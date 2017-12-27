@@ -26,6 +26,7 @@ import { Api } from '../api/api';
 @Injectable()
 export class User {
   _user: any;
+  _isLogin:any = true;
 
   constructor(public api: Api) { }
 

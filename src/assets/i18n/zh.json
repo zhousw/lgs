@@ -1,22 +1,23 @@
 {
-  "BACK_BUTTON_TEXT": "Back",
+  "BACK_BUTTON_TEXT": "返回",
 
-  "NAME": "Name",
+  "NAME": "姓名",
   "EMAIL": "Email",
-  "USERNAME": "Username",
-  "PASSWORD": "Password",
-  "LOGIN": "Sign in",
-  "SIGNUP": "Sign up",
+  "MOBILE": "手机号码",
+  "USERNAME": "用户名",
+  "PASSWORD": "密码",
+  "LOGIN": "登录",
+  "SIGNUP": "注册",
 
   "TAB1_TITLE": "主页",
   "TAB2_TITLE": "特价区",
   "TAB3_TITLE": "收藏夹",
   "TAB4_TITLE": "我的",
 
-  "MAP_TITLE": "Map",
+  "MAP_TITLE": "地图",
 
-  "TUTORIAL_SKIP_BUTTON": "Skip",
-  "TUTORIAL_CONTINUE_BUTTON": "Continue",
+  "TUTORIAL_SKIP_BUTTON": "跳过",
+  "TUTORIAL_CONTINUE_BUTTON": "继续",
 
   "TUTORIAL_SLIDE1_TITLE": "Welcome to the Ionic Super Starter",
   "TUTORIAL_SLIDE1_DESCRIPTION": "The <b>Ionic Super Starter</b> is a fully-featured Ionic starter with many pre-built pages and best practices.",
@@ -43,7 +44,7 @@
 
   "WELCOME_TITLE": "Welcome",
 
-  "LOGIN_TITLE": "Sign in",
+  "LOGIN_TITLE": "登 录",
   "LOGIN_ERROR": "Unable to sign in. Please check your account information and try again.",
   "LOGIN_BUTTON": "Sign in",
   "SIGNUP_TITLE": "Sign up",

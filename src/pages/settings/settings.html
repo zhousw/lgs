@@ -1,45 +1,35 @@
 <ion-header>
-
   <ion-navbar>
-    <ion-title>{{ pageTitle }}</ion-title>
+      <ion-title>
+          个人中心
+      </ion-title>
   </ion-navbar>
-
 </ion-header>
 
-<ion-content>
-
-  <form [formGroup]="form" *ngIf="settingsReady">
-    <ion-list *ngIf="page == 'main'">
-      <ion-item>
-        <ion-label>{{ 'SETTINGS_OPTION1' | translate }}</ion-label>
-        <ion-toggle formControlName="option1"></ion-toggle>
-      </ion-item>
-
-      <ion-item>
-        <ion-label>{{ 'SETTINGS_OPTION2' | translate }}</ion-label>
-        <ion-input formControlName="option2"></ion-input>
-      </ion-item>
-
-      <ion-item>
-        <ion-label>{{ 'SETTINGS_OPTION3' | translate }}</ion-label>
-        <ion-select formControlName="option3">
-          <ion-option value="1" checked="true">1</ion-option>
-          <ion-option value="2">2</ion-option>
-          <ion-option value="3">3</ion-option>
-        </ion-select>
-      </ion-item>
-
-      <button ion-item [navPush]="subSettings" [navParams]="profileSettings">
-        {{ 'SETTINGS_PROFILE_BUTTON' | translate }}
+<ion-content class="bg-color">
+  <ion-list class="top-list">
+      <button *ngIf="isLogin" ion-item [navPush]="userInfoPage">
+          <ion-avatar item-left>
+            <img src="./assets/img/advance-card-tmntr.jpg">
+          </ion-avatar>
+          <h2>devilx</h2>
+          <p>账号：{{user.mobile}}</p>
       </button>
-    </ion-list>
+  </ion-list>
 
-    <ion-list *ngIf="page == 'profile'">
-      <ion-item>
-        <ion-label>{{ 'SETTINGS_OPTION4' | translate }}</ion-label>
-        <ion-input formControlName="option4"></ion-input>
-      </ion-item>
-    </ion-list>
-  </form>
+  <ion-list>
+      <button ion-item>
+          版本号
+          <span  item-end>V1.0</span>
+      </button>
+      <button ion-item>
+          关于
+      </button>
+  </ion-list>
 
+  <div style="text-align: center; margin-left: 30px; margin-right: 30px;margin-top: 30px;">
+      <button ion-button block (click)="logOut()">
+          退出登录
+      </button>
+  </div>
 </ion-content>

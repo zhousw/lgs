@@ -62,7 +62,7 @@ export class MyApp {
       console.log('isNotShowTutorial is', val);
       if(val){
         this.rootPage = MainPage;
-        this.storage.set('isNotShowTutorial',false);
+        //this.storage.set('isNotShowTutorial',false);
       }else{
         this.rootPage = FirstRunPage;
         this.storage.set('isNotShowTutorial',true);
