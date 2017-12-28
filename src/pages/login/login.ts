@@ -4,6 +4,7 @@ import { IonicPage, NavController, ToastController,ViewController,Events } from 
 
 import { User } from '../../providers/providers';
 import { MainPage } from '../pages';
+import { UserInfo } from '../../models/userInfo';
 
 @IonicPage()
 @Component({
@@ -25,6 +26,7 @@ export class LoginPage {
   constructor(public navCtrl: NavController,
     public viewCtrl: ViewController,
     public user: User,
+    public userInfo:UserInfo,
     public toastCtrl: ToastController,
     public translateService: TranslateService,
     public events: Events) {
@@ -36,8 +38,8 @@ export class LoginPage {
 
   // Attempt to login in through our User service
   doLogin() {
-    this.user._isLogin = true;
-    this.events.publish('user:login',this.user);
+    this.userInfo._isLogin = true;
+  //  this.events.publish('user:login',this.user);
 
     this.user.login(this.account).subscribe((resp) => {
       //this.navCtrl.push(MainPage);

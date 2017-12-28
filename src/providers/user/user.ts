@@ -3,6 +3,7 @@ import 'rxjs/add/operator/toPromise';
 import { Injectable } from '@angular/core';
 
 import { Api } from '../api/api';
+import { UserInfo } from '../../models/userInfo';
 
 /**
  * Most apps have the concept of a User. This is a simple provider
@@ -25,10 +26,7 @@ import { Api } from '../api/api';
  */
 @Injectable()
 export class User {
-  _user: any;
-  _isLogin:any = true;
-
-  constructor(public api: Api) { }
+  constructor(public api: Api,public userInfo:UserInfo) { }
 
   /**
    * Send a POST request to our login endpoint with the data
@@ -73,13 +71,14 @@ export class User {
    * Log the user out, which forgets the session
    */
   logout() {
-    this._user = null;
+    this.userInfo._isLogin = false;
   }
 
   /**
    * Process a login/signup response to store user data
    */
   _loggedIn(resp) {
-    this._user = resp.user;
+    this.userInfo.id = resp.id;
+    this.userInfo._isLogin = true;
   }
 }

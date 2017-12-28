@@ -8,7 +8,7 @@
 
 <ion-content class="bg-color">
   <ion-list class="top-list">
-      <button *ngIf="isLogin" ion-item [navPush]="userInfoPage">
+      <button *ngIf="user._isLogin" ion-item [navPush]="userInfoPage">
           <ion-avatar item-left>
             <img src="./assets/img/advance-card-tmntr.jpg">
           </ion-avatar>
@@ -18,10 +18,13 @@
   </ion-list>
 
   <ion-list>
-      <button ion-item>
+        <button ion-item>
+        意见反馈
+        </button>
+        <button ion-item>
           版本号
           <span  item-end>V1.0</span>
-      </button>
+        </button>
       <button ion-item>
           关于
       </button>

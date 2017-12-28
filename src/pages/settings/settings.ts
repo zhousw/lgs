@@ -4,8 +4,8 @@ import { TranslateService } from '@ngx-translate/core';
 import { IonicPage, NavController, NavParams,ModalController,Events } from 'ionic-angular';
 
 import { Settings } from '../../providers/providers';
-import { WelcomePage } from '../../pages/welcome/welcome';
 import { User } from '../../providers/user/user';
+import { UserInfo } from '../../models/userInfo';
 
 /**
  * The Settings page is a simple form that syncs with a Settings provider
@@ -18,7 +18,6 @@ import { User } from '../../providers/user/user';
   templateUrl: 'settings.html'
 })
 export class SettingsPage {
-  isLogin:any;
   constructor(public navCtrl: NavController,
     public modalCtrl: ModalController,
     public settings: Settings,
@@ -26,43 +25,40 @@ export class SettingsPage {
     public navParams: NavParams,
     public translate: TranslateService,
     public user:User,
+    public userInfo:UserInfo,
     public events: Events) {
-      this.isLogin = user._isLogin;
-      events.subscribe('user:login', (user1) => {
-        this.isLogin = this.user._isLogin;
-      });
+      // events.subscribe('user:login', (user1) => { });
   }
 
 
   ionViewDidLoad() {
     // Build an empty form for the template to render
-    alert('ionViewDidLoad');
+    // alert('ionViewDidLoad');
   }
 
   ionViewWillEnter() {
     // Build an empty form for the template to render
-    alert('ionViewWillEnter');
+    //alert('ionViewWillEnter');
   }
 
   ionViewDidEnter(){
-    alert('ionViewDidEnter');
+    // alert('ionViewDidEnter');
   }
 
   ionViewWillLeave(){
-    alert('ionViewWillLeave');
+    // alert('ionViewWillLeave');
   }
 
   ionViewDidLeave(){
-    alert('ionViewDidLeave');
+    // alert('ionViewDidLeave');
   }
 
   ionViewWillUnload(){
-    alert('ionViewWillUnload');
+    // alert('ionViewWillUnload');
   }
 
   logOut() {
-    this.user._isLogin = false;
-    this.isLogin = false;
+    this.userInfo._isLogin = false;
     let modal = this.modalCtrl.create('LoginPage');
     modal.present();
   }
