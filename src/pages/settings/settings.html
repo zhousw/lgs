@@ -8,13 +8,14 @@
 
 <ion-content class="bg-color">
   <ion-list class="top-list">
-      <button *ngIf="user._isLogin" ion-item [navPush]="userInfoPage">
+      <button *ngIf="userInfo._isLogin" ion-item [navPush]="userInfoPage">
           <ion-avatar item-left>
             <img src="./assets/img/advance-card-tmntr.jpg">
           </ion-avatar>
-          <h2>devilx</h2>
-          <p>账号：{{user.mobile}}</p>
+          <h2>{{userInfo.name}}</h2>
+          <p>{{userInfo.mobile}}</p>
       </button>
+      <button class=".col-center" ion-button round outline item-center (click)="logOut()" *ngIf="!userInfo._isLogin">点击登录</button>
   </ion-list>
 
   <ion-list>
@@ -30,7 +31,7 @@
       </button>
   </ion-list>
 
-  <div style="text-align: center; margin-left: 30px; margin-right: 30px;margin-top: 30px;">
+  <div *ngIf="userInfo._isLogin" style="text-align: center; margin-left: 30px; margin-right: 30px;margin-top: 30px;">
       <button ion-button block (click)="logOut()">
           退出登录
       </button>

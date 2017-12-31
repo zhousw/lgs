@@ -5,6 +5,8 @@ import { IonicPage, NavController, ToastController,ViewController,Events } from 
 import { User } from '../../providers/providers';
 import { MainPage } from '../pages';
 import { UserInfo } from '../../models/userInfo';
+import { AppConfig } from '../../app/app.config';
+import { IonicUtil } from '../../providers/utils/IonicUtil';
 
 @IonicPage()
 @Component({
@@ -17,7 +19,7 @@ export class LoginPage {
   // sure to add it to the type
   account: { mobile: string, password: string } = {
     mobile: '13868986074',
-    password: 'test'
+    password: ''
   };
 
   // Our translated text strings
@@ -29,6 +31,7 @@ export class LoginPage {
     public userInfo:UserInfo,
     public toastCtrl: ToastController,
     public translateService: TranslateService,
+    private ionicUtil:IonicUtil,
     public events: Events) {
 
     this.translateService.get('LOGIN_ERROR').subscribe((value) => {
@@ -38,22 +41,11 @@ export class LoginPage {
 
   // Attempt to login in through our User service
   doLogin() {
-    this.userInfo._isLogin = true;
-  //  this.events.publish('user:login',this.user);
-
-    this.user.login(this.account).subscribe((resp) => {
+    //  this.events.publish('user:login',this.user);
+    
+    this.user.login(this.account).then(resp => {
       //this.navCtrl.push(MainPage);
       this.viewCtrl.dismiss();
-    }, (err) => {
-      //this.navCtrl.push(MainPage);
-      this.viewCtrl.dismiss();
-      // Unable to log in
-      let toast = this.toastCtrl.create({
-        message: this.loginErrorString,
-        duration: 3000,
-        position: 'top'
-      });
-      toast.present();
     });
   }
 }

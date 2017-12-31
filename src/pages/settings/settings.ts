@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
 import { IonicPage, NavController, NavParams,ModalController,Events } from 'ionic-angular';
 
-import { Settings } from '../../providers/providers';
+import { Settings,SysUtil } from '../../providers/providers';
 import { User } from '../../providers/user/user';
 import { UserInfo } from '../../models/userInfo';
 
@@ -18,14 +18,15 @@ import { UserInfo } from '../../models/userInfo';
   templateUrl: 'settings.html'
 })
 export class SettingsPage {
+  
   constructor(public navCtrl: NavController,
     public modalCtrl: ModalController,
     public settings: Settings,
     public formBuilder: FormBuilder,
     public navParams: NavParams,
     public translate: TranslateService,
-    public user:User,
-    public userInfo:UserInfo,
+    private userInfo:UserInfo,
+    private sysUtil:SysUtil,
     public events: Events) {
       // events.subscribe('user:login', (user1) => { });
   }
@@ -39,6 +40,7 @@ export class SettingsPage {
   ionViewWillEnter() {
     // Build an empty form for the template to render
     //alert('ionViewWillEnter');
+    this.sysUtil.checkLogin();
   }
 
   ionViewDidEnter(){
@@ -59,7 +61,7 @@ export class SettingsPage {
 
   logOut() {
     this.userInfo._isLogin = false;
-    let modal = this.modalCtrl.create('LoginPage');
-    modal.present();
+    //this.sysUtil.checkLogin();
   }
+
 }

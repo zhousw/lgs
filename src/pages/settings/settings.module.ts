@@ -3,7 +3,6 @@ import { TranslateModule } from '@ngx-translate/core';
 import { IonicPageModule } from 'ionic-angular';
 
 import { SettingsPage } from './settings';
-import { UserInfo } from '../../models/userInfo';
 
 @NgModule({
   declarations: [
@@ -17,7 +16,6 @@ import { UserInfo } from '../../models/userInfo';
     SettingsPage
   ],
   providers:[
-    UserInfo
   ]
 })
 export class SettingsPageModule { }

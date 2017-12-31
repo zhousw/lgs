@@ -2,8 +2,10 @@ import 'rxjs/add/operator/toPromise';
 
 import { Injectable } from '@angular/core';
 
-import { Api } from '../api/api';
+import { HttpUtil } from '../utils/HttpUtil';
 import { UserInfo } from '../../models/userInfo';
+import { AppConfig } from '../../app/app.config';
+import { IonicUtil } from '../utils/IonicUtil';
 
 /**
  * Most apps have the concept of a User. This is a simple provider
@@ -26,26 +28,27 @@ import { UserInfo } from '../../models/userInfo';
  */
 @Injectable()
 export class User {
-  constructor(public api: Api,public userInfo:UserInfo) { }
+  constructor(public httpUtil: HttpUtil,
+          public userInfo:UserInfo,
+          private ionicUtil:IonicUtil) { 
+
+          }
 
   /**
    * Send a POST request to our login endpoint with the data
    * the user entered on the form.
    */
   login(accountInfo: any) {
-    let seq = this.api.post('login', accountInfo).share();
-
-    seq.subscribe((res: any) => {
-      // If the API returned a successful response, mark the user as logged in
-      if (res.status == 'success') {
-        this._loggedIn(res);
-      } else {
+    return this.httpUtil.post('user/login.do', accountInfo).then(resp=>{
+      if(resp.success){
+        AppConfig.authorization = resp.attributes.authorization;
+        this._loggedIn(resp.obj);
+        this.ionicUtil.toast("登录成功");
+      }else{
+        this.logout();
       }
-    }, err => {
-      console.error('ERROR', err);
+      return resp;
     });
-
-    return seq;
   }
 
   /**
@@ -53,18 +56,12 @@ export class User {
    * the user entered on the form.
    */
   signup(accountInfo: any) {
-    let seq = this.api.post('signup', accountInfo).share();
-
-    seq.subscribe((res: any) => {
+    return this.httpUtil.post('signup', accountInfo).then(res => {
       // If the API returned a successful response, mark the user as logged in
-      if (res.status == 'success') {
+      if (res.success) {
         this._loggedIn(res);
       }
-    }, err => {
-      console.error('ERROR', err);
     });
-
-    return seq;
   }
 
   /**
@@ -79,6 +76,9 @@ export class User {
    */
   _loggedIn(resp) {
     this.userInfo.id = resp.id;
+    this.userInfo.mobile = resp.mobile;
+    this.userInfo.userName = resp.userName;
+    this.userInfo.name = resp.name;
     this.userInfo._isLogin = true;
   }
 }

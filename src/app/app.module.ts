@@ -1,4 +1,5 @@
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpModule  } from '@angular/http';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { Camera } from '@ionic-native/camera';
@@ -12,8 +13,9 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { Items } from '../mocks/providers/items';
 import { Settings } from '../providers/providers';
 import { User } from '../providers/providers';
-import { Api } from '../providers/providers';
+import { HttpUtil,SysUtil,IonicUtil } from '../providers/providers';
 import { MyApp } from './app.component';
+import { UserInfo } from '../models/userInfo';
 
 // The translate loader needs to know where to load i18n files
 // in Ionic's static asset pipeline.
@@ -42,6 +44,7 @@ export function provideSettings(storage: Storage) {
   ],
   imports: [
     BrowserModule,
+    HttpModule,
     HttpClientModule,
     TranslateModule.forRoot({
       loader: {
@@ -58,12 +61,15 @@ export function provideSettings(storage: Storage) {
     MyApp
   ],
   providers: [
-    Api,
+    HttpUtil,
+    SysUtil,
+    IonicUtil,
     Items,
     User,
     Camera,
     SplashScreen,
     StatusBar,
+    UserInfo,
     { provide: Settings, useFactory: provideSettings, deps: [Storage] },
     // Keep this to enable Ionic's runtime error handling during development
     { provide: ErrorHandler, useClass: IonicErrorHandler }
