@@ -64,4 +64,8 @@ export class SettingsPage {
     //this.sysUtil.checkLogin();
   }
 
+  goLogin() {
+    this.sysUtil.checkLogin();
+  }
+
 }

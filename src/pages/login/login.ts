@@ -2,11 +2,13 @@ import { Component } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { IonicPage, NavController, ToastController,ViewController,Events } from 'ionic-angular';
 
-import { User } from '../../providers/providers';
+import { User, SysUtil } from '../../providers/providers';
 import { MainPage } from '../pages';
 import { UserInfo } from '../../models/userInfo';
 import { AppConfig } from '../../app/app.config';
 import { IonicUtil } from '../../providers/utils/IonicUtil';
+import * as $ from 'jquery';
+import * as md5 from 'md5';
 
 @IonicPage()
 @Component({
@@ -32,20 +34,37 @@ export class LoginPage {
     public toastCtrl: ToastController,
     public translateService: TranslateService,
     private ionicUtil:IonicUtil,
+    private sysUtil:SysUtil,
     public events: Events) {
 
     this.translateService.get('LOGIN_ERROR').subscribe((value) => {
       this.loginErrorString = value;
-    })
+    });
   }
 
   // Attempt to login in through our User service
   doLogin() {
     //  this.events.publish('user:login',this.user);
-    
-    this.user.login(this.account).then(resp => {
+    let mobile = $.trim(this.account.mobile);
+    let password = $.trim(this.account.password);
+    if( this.sysUtil.isNull(mobile)){
+      this.ionicUtil.toast("请输入用户名！");
+      return;
+    }else if( this.sysUtil.isNull(password)){
+      this.ionicUtil.toast("请输入密码");
+      return;
+    }
+    this.user.login({'mobile':mobile,'password':md5(password)}).then(resp => {
       //this.navCtrl.push(MainPage);
       this.viewCtrl.dismiss();
     });
+  }
+
+  register(){
+    this.ionicUtil.modal('SignupPage');
+  }
+
+  forget(){
+    this.navCtrl.push('ForgetPwdPage');
   }
 }

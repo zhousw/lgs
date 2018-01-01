@@ -1,4 +1,4 @@
-import { AlertController,ToastController,ModalController,LoadingController  } from 'ionic-angular';
+import { AlertController,ToastController,ModalController,LoadingController,NavController  } from 'ionic-angular';
 import { Injectable } from '@angular/core';
 
 @Injectable()

@@ -1,24 +1,30 @@
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>{{ 'SIGNUP_TITLE' | translate }}</ion-title>
+  <ion-navbar ion-end>
+    <ion-title style='text-align:center'>{{ 'SIGNUP_TITLE' | translate }}</ion-title>
+    <ion-buttons end>
+      <button ion-button (click)="close()" strong>
+        <ion-icon name="md-close"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content>
-  <form (submit)="doSignup()">
+  <form>
     <ion-list>
 
       <ion-item>
-        <ion-label fixed>{{ 'NAME' | translate }}</ion-label>
-        <ion-input type="text" [(ngModel)]="account.name" name="name"></ion-input>
+        <ion-label fixed>{{ 'MOBILE' | translate }}</ion-label>
+        <ion-input type="text" [(ngModel)]="account.mobile" name="mobile"></ion-input>
       </ion-item>
 
       <ion-item>
-        <ion-label fixed>{{ 'EMAIL' | translate }}</ion-label>
-        <ion-input type="email" [(ngModel)]="account.email" name="email"></ion-input>
+        <ion-label fixed>{{ 'CHECKCODE' | translate }}</ion-label>
+        <ion-input type="text" [(ngModel)]="account.checkcode" name="checkcode"></ion-input>
+        <button ion-button item-end [disabled]="!isEnabled" (click)="sendCheckcode()">{{sendLabel}}</button>
       </ion-item>
 
       <!--
@@ -34,9 +40,13 @@
         <ion-label fixed>{{ 'PASSWORD' | translate }}</ion-label>
         <ion-input type="password" [(ngModel)]="account.password" name="password"></ion-input>
       </ion-item>
+      <ion-item>
+          <ion-label fixed>{{ 'PASSWORDAG' | translate }}</ion-label>
+          <ion-input type="password" [(ngModel)]="account.passwordAg" name="passwordAg"></ion-input>
+        </ion-item>
 
       <div padding>
-        <button ion-button color="primary" block>{{ 'SIGNUP_BUTTON' | translate }}</button>
+        <button ion-button color="primary" (click)="doSignup()" block>{{ 'SIGNUP_BUTTON1' | translate }}</button>
       </div>
 
     </ion-list>

@@ -15,7 +15,9 @@
           <h2>{{userInfo.name}}</h2>
           <p>{{userInfo.mobile}}</p>
       </button>
-      <button class=".col-center" ion-button round outline item-center (click)="logOut()" *ngIf="!userInfo._isLogin">点击登录</button>
+      <div style="text-align:center"  *ngIf="!userInfo._isLogin">
+          <button ion-button round outline item-center (click)="goLogin();">点击登录</button>
+      </div>
   </ion-list>
 
   <ion-list>

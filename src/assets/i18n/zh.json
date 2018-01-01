@@ -6,8 +6,11 @@
   "MOBILE": "手机号码",
   "USERNAME": "用户名",
   "PASSWORD": "密码",
+  "PASSWORDAG": "确认密码",
   "LOGIN": "登录",
   "SIGNUP": "注册",
+  "CHECKCODE":"验证码",
+  "SEND_CHECKCODE":"获取验证码",
 
   "TAB1_TITLE": "主页",
   "TAB2_TITLE": "特价区",
@@ -49,7 +52,8 @@
   "LOGIN_BUTTON": "登 录",
   "SIGNUP_TITLE": "注 册",
   "SIGNUP_ERROR": "Unable to create account. Please check your account information and try again.",
-  "SIGNUP_BUTTON": "注 册",
+  "SIGNUP_BUTTON": "新用户注册",
+  "SIGNUP_BUTTON1": "注 册",
   "RECORDS_TITLE":"我的足迹",
 
   "LIST_MASTER_TITLE": "Items",
