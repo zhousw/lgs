@@ -80,7 +80,9 @@ export class SignupPage {
   }
   enableCheck(){
     this.leafSecond = AppConfig.SendCheckCodeSec;
-    this.sendLabel = "获取验证码";
+    this.translateService.get('SEND_CHECKCODE').subscribe((value) => {
+      this.sendLabel = value;
+    });
     this.isEnabled = true;
   }
 }

@@ -11,6 +11,7 @@
   "SIGNUP": "注册",
   "CHECKCODE":"验证码",
   "SEND_CHECKCODE":"获取验证码",
+  "SEND_NEXTSTEP":"发送下一步",
 
   "TAB1_TITLE": "主页",
   "TAB2_TITLE": "特价区",

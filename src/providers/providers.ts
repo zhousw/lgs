@@ -3,6 +3,7 @@ import { SysUtil } from './utils/SysUtil';
 import { IonicUtil } from './utils/IonicUtil';
 import { Items } from '../mocks/providers/items';
 import { Settings } from './settings/settings';
+import { CheckCode } from './msg/checkCode';
 import { User } from './user/user';
 
 export {
@@ -11,5 +12,6 @@ export {
     IonicUtil,
     Items,
     Settings,
-    User
+    User,
+    CheckCode
 };
