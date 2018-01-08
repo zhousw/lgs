@@ -13,12 +13,14 @@ export class SysUtil{
     ){}
 
     
-        public checkLogin(){
-            if(!this.userInfo._isLogin){
-                this.ionicUtil.modal('LoginPage');
-              }
+    public checkLogin(){
+        if(!this.userInfo._isLogin){
+            this.ionicUtil.modal('LoginPage');
+            return false;
         }
-   
+        return true;
+    }
+
       //判断是否为空
       public isNull (info){
           if(info == null || info == '' || angular.isUndefined(info)){

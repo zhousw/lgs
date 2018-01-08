@@ -56,11 +56,12 @@ export class User {
    * the user entered on the form.
    */
   signup(accountInfo: any) {
-    return this.httpUtil.post('signup', accountInfo).then(res => {
+    return this.httpUtil.post('user/register.do', accountInfo).then(res => {
       // If the API returned a successful response, mark the user as logged in
       if (res.success) {
-        this._loggedIn(res);
+        //this._loggedIn(res);
       }
+      return res;
     });
   }
 

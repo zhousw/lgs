@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 /**
- * Generated class for the ForgetPwd2Page page.
+ * Generated class for the AboutusPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
@@ -10,16 +10,16 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 @IonicPage()
 @Component({
-  selector: 'page-forget-pwd2',
-  templateUrl: 'forget-pwd2.html',
+  selector: 'page-aboutus',
+  templateUrl: 'aboutus.html',
 })
-export class ForgetPwd2Page {
+export class AboutusPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad ForgetPwd2Page');
+    console.log('ionViewDidLoad AboutusPage');
   }
 
 }

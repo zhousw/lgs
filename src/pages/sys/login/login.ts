@@ -1,12 +1,13 @@
 import { Component } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { IonicPage, NavController, ToastController,ViewController,Events } from 'ionic-angular';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
-import { User, SysUtil } from '../../providers/providers';
-import { MainPage } from '../pages';
-import { UserInfo } from '../../models/userInfo';
-import { AppConfig } from '../../app/app.config';
-import { IonicUtil } from '../../providers/utils/IonicUtil';
+import { User, SysUtil } from '../../../providers/providers';
+import { MainPage } from '../../pages';
+import { UserInfo } from '../../../models/userInfo';
+import { AppConfig } from '../../../app/app.config';
+import { IonicUtil } from '../../../providers/utils/IonicUtil';
 import * as $ from 'jquery';
 import * as md5 from 'md5';
 
@@ -26,6 +27,7 @@ export class LoginPage {
 
   // Our translated text strings
   private loginErrorString: string;
+  private loginForm:FormGroup;
 
   constructor(public navCtrl: NavController,
     public viewCtrl: ViewController,
@@ -35,7 +37,13 @@ export class LoginPage {
     public translateService: TranslateService,
     private ionicUtil:IonicUtil,
     private sysUtil:SysUtil,
+    public formBuilder:FormBuilder,
     public events: Events) {
+
+    this.loginForm = formBuilder.group({
+        mobile: ['', Validators.compose([Validators.required,Validators.pattern('[0-9]*'),Validators.minLength(11), Validators.maxLength(11)])],
+        password: ['', Validators.compose([Validators.required,Validators.maxLength(12),Validators.minLength(6)])]
+    });
 
     this.translateService.get('LOGIN_ERROR').subscribe((value) => {
       this.loginErrorString = value;
@@ -56,7 +64,8 @@ export class LoginPage {
     }
     this.user.login({'mobile':mobile,'password':md5(password)}).then(resp => {
       //this.navCtrl.push(MainPage);
-      this.viewCtrl.dismiss();
+      if(resp.success)
+        this.viewCtrl.dismiss();
     });
   }
 
@@ -66,5 +75,9 @@ export class LoginPage {
 
   forget(){
     this.navCtrl.push('ForgetPwdPage');
+  }
+
+  close(){
+    this.viewCtrl.dismiss();
   }
 }

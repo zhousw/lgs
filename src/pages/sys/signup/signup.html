@@ -1,0 +1,70 @@
+<ion-header>
+
+  <ion-navbar ion-end>
+    <ion-title style='text-align:center'>{{ 'SIGNUP_TITLE' | translate }}</ion-title>
+    <ion-buttons end>
+      <button ion-button (click)="close()" strong>
+        <ion-icon name="md-close"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+  <form [formGroup]="signForm" (ngSubmit)="doSignup()" novalidate>
+    <ion-list>
+
+      <ion-item [ngClass]="{'error-border':!signForm.controls.mobile.valid && signForm.controls.mobile.touched}">
+        <ion-label fixed>{{ 'MOBILE' | translate }}</ion-label>
+        <ion-input type="tel" formControlName="mobile" [(ngModel)]="mobile"></ion-input>
+      </ion-item>
+      <ion-item class="error-message" *ngIf="signForm.controls.mobile.hasError('required') && signForm.controls.mobile.touched">
+        <p>请输入手机号码</p>
+      </ion-item>
+      <ion-item class="error-message" *ngIf="(signForm.controls.mobile.hasError('minlength') || signForm.controls.mobile.hasError('maxlength')  ) && signForm.controls.mobile.touched">
+        <p>请输入正确的11位手机号码</p>
+      </ion-item>
+      <ion-item class="error-message" *ngIf="signForm.controls.mobile.hasError('pattern') && signForm.controls.mobile.touched">
+        <p>手机号码必须为数字</p>
+      </ion-item>
+
+      <ion-item>
+        <ion-label fixed>{{ 'CHECKCODE' | translate }}</ion-label>
+        <ion-input type="number" formControlName="checkcode"></ion-input>
+        <button ion-button item-end type="button" [disabled]="!isEnabled || !signForm.controls.mobile.valid " (click)="sendCheckcode()">{{sendLabel}}</button>
+      </ion-item>
+
+      <ion-item class="error-message" *ngIf="signForm.controls.checkcode.hasError('required') && signForm.controls.checkcode.touched">
+        <p>请输入验证码</p>
+      </ion-item>
+      <ion-item class="error-message" *ngIf="(signForm.controls.checkcode.hasError('minlength') || signForm.controls.checkcode.hasError('maxlength')  ) && signForm.controls.checkcode.touched">
+        <p>请输入4位验证码</p>
+      </ion-item>
+
+      <ion-item>
+        <ion-label fixed>{{ 'PASSWORD' | translate }}</ion-label>
+        <ion-input type="password" formControlName="password"></ion-input>
+      </ion-item>
+      <ion-item class="error-message" *ngIf="signForm.controls.password.hasError('required') && signForm.controls.password.touched">
+        <p>请输入密码</p>
+      </ion-item>
+      <ion-item class="error-message" *ngIf="(signForm.controls.password.hasError('minlength') || signForm.controls.password.hasError('maxlength')) && signForm.controls.password.touched">
+        <p>请输入6到12位的密码</p>
+      </ion-item>
+      <ion-item>
+        <ion-label fixed>{{ 'PASSWORDAG' | translate }}</ion-label>
+        <ion-input type="password"  formControlName="passwordAg"></ion-input>
+      </ion-item>
+      <ion-item class="error-message" *ngIf="signForm.controls.passwordAg.hasError('required') && signForm.controls.passwordAg.touched">
+        <p>请输入确认密码</p>
+      </ion-item>
+
+      <div padding>
+        <button ion-button color="primary" [disabled]="!signForm.valid" type="submit" block>{{ 'SIGNUP_BUTTON1' | translate }}</button>
+      </div>
+
+    </ion-list>
+  </form>
+</ion-content>

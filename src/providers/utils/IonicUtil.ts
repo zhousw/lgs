@@ -19,6 +19,14 @@ export class IonicUtil{
           }).present();
     };
 
+    toastCenter(msg,time?){
+        this.toastCtrl.create({
+            message : msg,
+            position: 'middle',
+            duration: time || 1500
+          }).present();
+    };
+
     loading(msg){
         let loader = this.load.create({
             content: msg,

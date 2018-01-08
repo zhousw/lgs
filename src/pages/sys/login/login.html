@@ -1,0 +1,61 @@
+<ion-header>
+
+  <ion-navbar ion-end>
+    <ion-title style='text-align:center'>{{ 'LOGIN_TITLE' | translate }}</ion-title>
+    <ion-buttons end>
+      <button ion-button (click)="close()" strong>
+        <ion-icon name="md-close"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+  <ion-list>
+    
+    <form  [formGroup]="loginForm" novalidate>
+      <ion-item>
+        <ion-label fixed>{{ 'MOBILE' | translate }}</ion-label>
+        <ion-input type="mobile" [(ngModel)]="account.mobile" formControlName="mobile"></ion-input>
+      </ion-item>
+      <ion-item class="error-message" *ngIf="loginForm.controls.mobile.hasError('required') && loginForm.controls.mobile.touched">
+        <p>请输入手机号码</p>
+      </ion-item>
+      <ion-item class="error-message" *ngIf="(loginForm.controls.mobile.hasError('minlength') || loginForm.controls.mobile.hasError('maxlength')  ) && loginForm.controls.mobile.touched">
+        <p>请输入正确的11位手机号码</p>
+      </ion-item>
+      <ion-item class="error-message" *ngIf="loginForm.controls.mobile.hasError('pattern') && loginForm.controls.mobile.touched">
+        <p>手机号码必须为数字</p>
+      </ion-item>
+      <!--
+      Want to use a Username instead of an Email? Here you go:
+
+      <ion-item>
+        <ion-label floating>{{ 'USERNAME' | translate }}</ion-label>
+        <ion-input type="text" [(ngModel)]="account.username" name="username"></ion-input>
+      </ion-item>
+      -->
+
+      <ion-item>
+        <ion-label fixed>{{ 'PASSWORD' | translate }}</ion-label>
+        <ion-input type="password" [(ngModel)]="account.password" formControlName="password"></ion-input>
+      </ion-item>
+      <ion-item class="error-message" *ngIf="loginForm.controls.password.hasError('required') && loginForm.controls.password.touched">
+        <p>请输入密码</p>
+      </ion-item>
+      <ion-item class="error-message" *ngIf="(loginForm.controls.password.hasError('minlength') || loginForm.controls.password.hasError('maxlength')) && loginForm.controls.password.touched">
+        <p>请输入6到12位的密码</p>
+      </ion-item>
+    </form>
+      <div padding>
+        <button ion-button color="primary" block [disabled]="!loginForm.valid" (click)="doLogin()">{{ 'LOGIN_BUTTON' | translate }}</button>
+        <button ion-button color="secondary" block (click)="register()">{{ 'SIGNUP_BUTTON' | translate }}</button>
+      </div>
+      <div style="text-align:right;padding:0 20px;">
+        <button ion-button color="light" (click)="forget()">忘记密码？</button>
+      </div>
+
+    </ion-list>
+</ion-content>

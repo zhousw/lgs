@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams,ViewController } from 'ionic-angular';
 import { TranslateService } from '@ngx-translate/core';
-import { AppConfig } from '../../app/app.config';
-import { CheckCode, SysUtil,IonicUtil } from '../../providers/providers';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AppConfig } from '../../../app/app.config';
+import { CheckCode, SysUtil,IonicUtil } from '../../../providers/providers';
+
 /**
  * Generated class for the ForgetPwdPage page.
  *
@@ -27,13 +29,19 @@ export class ForgetPwdPage {
   isEnabled:any =true;
   sendLabel:any="";
   leafSecond:any=AppConfig.SendCheckCodeSec;
-
+  myForm:FormGroup;
   constructor(public navCtrl: NavController, public navParams: NavParams,
     public view:ViewController,
     public checkCode:CheckCode,
+    public formBuilder:FormBuilder,
     public sysUtil:SysUtil,
     public ionicUtil:IonicUtil,
     public translateService: TranslateService) {
+
+    this.myForm = formBuilder.group({
+      mobile: ['', Validators.compose([Validators.required,Validators.pattern('[0-9]*'),Validators.minLength(11), Validators.maxLength(11)])],
+      checkcode: ['', Validators.compose([Validators.required,Validators.maxLength(4),Validators.minLength(4)])]
+    });
     this.enableCheck();
   }
 
@@ -42,10 +50,6 @@ export class ForgetPwdPage {
   }
 
   sendCheckcode(){
-    if(this.sysUtil.isNull(this.account.mobile)){
-      this.ionicUtil.toast("手机号码不能为空！");
-      return;
-    }
     this.checkCode.sendCheckCode(this.account.mobile).then(resp=>{
       if(resp.success){
         this.isEnabled = false;
@@ -57,18 +61,10 @@ export class ForgetPwdPage {
   }
 
   validCheckCode(){
-    if(this.sysUtil.isNull(this.account.mobile)){
-      this.ionicUtil.toast("手机号码不能为空！");
-      return;
-    }
-    if(this.sysUtil.isNull(this.account.checkcode)){
-      this.ionicUtil.toast("验证码不能为空！");
-      return;
-    }
     this.checkCode.validCheckCode(this.account.mobile,this.account.checkcode).then(resp=>{
       if(resp.success){
         this.view.dismiss();
-        this.navCtrl.push('LoginPage');
+        this.navCtrl.push('ModifyPwdPage',{"type":"forgetPwd"});
       }
     });
   }

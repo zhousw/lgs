@@ -3,9 +3,9 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
 import { IonicPage, NavController, NavParams,ModalController,Events } from 'ionic-angular';
 
-import { Settings,SysUtil } from '../../providers/providers';
-import { User } from '../../providers/user/user';
-import { UserInfo } from '../../models/userInfo';
+import { Settings,SysUtil } from '../../../providers/providers';
+import { User } from '../../../providers/user/user';
+import { UserInfo } from '../../../models/userInfo';
 
 /**
  * The Settings page is a simple form that syncs with a Settings provider
@@ -65,6 +65,10 @@ export class SettingsPage {
   }
 
   goLogin() {
+    this.sysUtil.checkLogin();
+  }
+
+  goShippingAddr(){
     this.sysUtil.checkLogin();
   }
 

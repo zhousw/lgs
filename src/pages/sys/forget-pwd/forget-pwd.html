@@ -1,0 +1,48 @@
+<!--
+  Generated template for the ForgetPwdPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>忘记密码</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+    <form [formGroup]="myForm" novalidate>
+        <ion-list>
+          <ion-item>
+            <ion-label fixed>{{ 'MOBILE' | translate }}</ion-label>
+            <ion-input type="text" [(ngModel)]="account.mobile" formControlName="mobile"></ion-input>
+          </ion-item>
+          <ion-item class="error-message" *ngIf="myForm.controls.mobile.hasError('required') && myForm.controls.mobile.touched">
+            <p>请输入手机号码</p>
+          </ion-item>
+          <ion-item class="error-message" *ngIf="(myForm.controls.mobile.hasError('minlength') || myForm.controls.mobile.hasError('maxlength')  ) && myForm.controls.mobile.touched">
+            <p>请输入正确的11位手机号码</p>
+          </ion-item>
+          <ion-item class="error-message" *ngIf="myForm.controls.mobile.hasError('pattern') && myForm.controls.mobile.touched">
+            <p>手机号码必须为数字</p>
+          </ion-item>
+          <ion-item>
+            <ion-label fixed>{{ 'CHECKCODE' | translate }}</ion-label>
+            <ion-input type="text" [(ngModel)]="account.checkcode" formControlName="checkcode"></ion-input>
+            <button ion-button item-end [disabled]="!isEnabled || !myForm.controls.mobile.valid" (click)="sendCheckcode()">{{sendLabel}}</button>
+          </ion-item>
+          <ion-item class="error-message" *ngIf="myForm.controls.checkcode.hasError('required') && myForm.controls.checkcode.touched">
+            <p>请输入验证码</p>
+          </ion-item>
+          <ion-item class="error-message" *ngIf="(myForm.controls.checkcode.hasError('minlength') || myForm.controls.checkcode.hasError('maxlength')  ) && myForm.controls.checkcode.touched">
+            <p>请输入4位验证码</p>
+          </ion-item>
+          <div padding>
+              <button ion-button color="primary" [disabled]="!myForm.valid"  (click)="doNextStep()" block>{{ 'SEND_NEXTSTEP' | translate }}</button>
+            </div>
+        </ion-list>
+    </form>
+</ion-content>
