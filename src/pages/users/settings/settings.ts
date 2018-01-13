@@ -3,9 +3,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
 import { IonicPage, NavController, NavParams,ModalController,Events } from 'ionic-angular';
 
-import { Settings,SysUtil } from '../../../providers/providers';
-import { User } from '../../../providers/user/user';
-import { UserInfo } from '../../../models/userInfo';
+import { SettingsPrd,SysUtil,UserPrd } from '../../../providers/providers';
 
 /**
  * The Settings page is a simple form that syncs with a Settings provider
@@ -21,11 +19,11 @@ export class SettingsPage {
   
   constructor(public navCtrl: NavController,
     public modalCtrl: ModalController,
-    public settings: Settings,
+    public settings: SettingsPrd,
     public formBuilder: FormBuilder,
     public navParams: NavParams,
     public translate: TranslateService,
-    private userInfo:UserInfo,
+    private userPrd:UserPrd,
     private sysUtil:SysUtil,
     public events: Events) {
       // events.subscribe('user:login', (user1) => { });
@@ -40,7 +38,7 @@ export class SettingsPage {
   ionViewWillEnter() {
     // Build an empty form for the template to render
     //alert('ionViewWillEnter');
-    this.sysUtil.checkLogin();
+    this.userPrd.checkLogin();
   }
 
   ionViewDidEnter(){
@@ -60,16 +58,15 @@ export class SettingsPage {
   }
 
   logOut() {
-    this.userInfo._isLogin = false;
-    //this.sysUtil.checkLogin();
+    this.userPrd.logout();
   }
 
   goLogin() {
-    this.sysUtil.checkLogin();
+    this.userPrd.checkLogin();
   }
 
   goShippingAddr(){
-    this.sysUtil.checkLogin();
+    this.userPrd.checkLogin();
   }
 
 }

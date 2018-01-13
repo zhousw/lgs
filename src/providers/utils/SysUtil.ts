@@ -1,26 +1,13 @@
 import { AppConfig } from '../../app/app.config';
 import * as angular from 'angular';
 import { Injectable } from '@angular/core';
-import { UserInfo } from '../../models/userInfo';
-import { IonicUtil } from './IonicUtil';
 
 @Injectable()
 export class SysUtil{
 
     constructor(
-        private userInfo:UserInfo,
-        private ionicUtil:IonicUtil
     ){}
-
     
-    public checkLogin(){
-        if(!this.userInfo._isLogin){
-            this.ionicUtil.modal('LoginPage');
-            return false;
-        }
-        return true;
-    }
-
       //判断是否为空
       public isNull (info){
           if(info == null || info == '' || angular.isUndefined(info)){

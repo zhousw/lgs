@@ -32,13 +32,16 @@ export class HttpUtil {
     if(!this.sysUtil.isNull(AppConfig.authorization)){
       header.append("authorization",AppConfig.authorization);
     }
-    return this.http.get(this.baseUrl+url,new RequestOptions({headers: header}));
+    return this.http.get(this.baseUrl+url,new RequestOptions({headers: header})).toPromise()
+        .then(res => this.handleSuccess(res.json()))
+        .catch(error => this.handleError(error));
   }
   post(url,requestBody?,header?:Headers){
     this.preReq();
     if(this.sysUtil.isNull(header)){
       header = new Headers({'Content-Type': 'application/x-www-form-urlencoded'});
     }
+
     if(!this.sysUtil.isNull(AppConfig.authorization)){
       header.append("authorization",AppConfig.authorization);
     }

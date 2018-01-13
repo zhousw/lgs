@@ -1,5 +1,6 @@
-import { AlertController,ToastController,ModalController,LoadingController,NavController  } from 'ionic-angular';
+import { AlertController,ToastController,ModalController,LoadingController  } from 'ionic-angular';
 import { Injectable } from '@angular/core';
+import { SysUtil } from './SysUtil';
 
 @Injectable()
 export class IonicUtil{

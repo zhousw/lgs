@@ -3,7 +3,7 @@ import { IonicPage, NavController, NavParams,ViewController } from 'ionic-angula
 import { TranslateService } from '@ngx-translate/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AppConfig } from '../../../app/app.config';
-import { CheckCode, SysUtil,IonicUtil } from '../../../providers/providers';
+import { MsgPrd, SysUtil,IonicUtil } from '../../../providers/providers';
 
 /**
  * Generated class for the ForgetPwdPage page.
@@ -26,13 +26,14 @@ export class ForgetPwdPage {
     passwordAg:''
   };
 
+  token:any;
   isEnabled:any =true;
   sendLabel:any="";
   leafSecond:any=AppConfig.SendCheckCodeSec;
   myForm:FormGroup;
   constructor(public navCtrl: NavController, public navParams: NavParams,
     public view:ViewController,
-    public checkCode:CheckCode,
+    public checkCode:MsgPrd,
     public formBuilder:FormBuilder,
     public sysUtil:SysUtil,
     public ionicUtil:IonicUtil,
@@ -52,6 +53,7 @@ export class ForgetPwdPage {
   sendCheckcode(){
     this.checkCode.sendCheckCode(this.account.mobile).then(resp=>{
       if(resp.success){
+        this.token = resp.obj;
         this.isEnabled = false;
         setTimeout(() => {  
           this.mdLabel();  
@@ -64,7 +66,7 @@ export class ForgetPwdPage {
     this.checkCode.validCheckCode(this.account.mobile,this.account.checkcode).then(resp=>{
       if(resp.success){
         this.view.dismiss();
-        this.navCtrl.push('ModifyPwdPage',{"type":"forgetPwd"});
+        this.navCtrl.push('ModifyPwdPage',{"type":"forgetPwd","token":this.token,"mobile":this.account.mobile});
       }
     });
   }

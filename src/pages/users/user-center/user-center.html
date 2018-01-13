@@ -8,7 +8,7 @@
   
   <ion-content class="bg-color">
     <ion-list class="top-list">
-        <button *ngIf="userInfo._isLogin" ion-item [navPush]="userInfoPage">
+        <button *ngIf="userInfo._isLogin" ion-item (click)="goPage('UserInfoPage')">
             <ion-avatar item-left>
               <img src="./assets/img/advance-card-tmntr.jpg">
             </ion-avatar>
@@ -23,9 +23,6 @@
     <ion-list>
           <button ion-item>
             意见反馈
-          </button>
-          <button ion-item (click)="goPage('ShippingAddrListPage')">
-          收货地址
           </button>
           <button ion-item>
             版本号

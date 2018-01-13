@@ -3,9 +3,8 @@ import { TranslateService } from '@ngx-translate/core';
 import { IonicPage, NavController, ToastController,ViewController,Events } from 'ionic-angular';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
-import { User, SysUtil } from '../../../providers/providers';
+import { UserPrd, SysUtil } from '../../../providers/providers';
 import { MainPage } from '../../pages';
-import { UserInfo } from '../../../models/userInfo';
 import { AppConfig } from '../../../app/app.config';
 import { IonicUtil } from '../../../providers/utils/IonicUtil';
 import * as $ from 'jquery';
@@ -31,8 +30,7 @@ export class LoginPage {
 
   constructor(public navCtrl: NavController,
     public viewCtrl: ViewController,
-    public user: User,
-    public userInfo:UserInfo,
+    public user: UserPrd,
     public toastCtrl: ToastController,
     public translateService: TranslateService,
     private ionicUtil:IonicUtil,

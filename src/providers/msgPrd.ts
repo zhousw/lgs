@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import { Storage } from '@ionic/storage';
-import { HttpUtil } from '../utils/HttpUtil';
-import { IonicUtil } from '../utils/IonicUtil';
+import { HttpUtil } from './utils/HttpUtil';
+import { IonicUtil } from './utils/IonicUtil';
 /**
  * A simple settings/config class for storing key/value pairs with persistence.
  */
 @Injectable()
-export class CheckCode {
+export class MsgPrd {
 
   constructor(public storage: Storage,
     public httpUtil:HttpUtil, 

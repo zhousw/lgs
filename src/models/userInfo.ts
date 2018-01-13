@@ -3,5 +3,5 @@ export class UserInfo{
     mobile:any;
     userName:any;
     name:any;
-    _isLogin:any = false;
+    _isLogin:boolean = false;
 }

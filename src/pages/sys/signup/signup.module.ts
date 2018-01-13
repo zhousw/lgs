@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
 import { IonicPageModule } from 'ionic-angular';
-import { CheckCode } from '../../../providers/providers';
+import { MsgPrd } from '../../../providers/providers';
 
 import { SignupPage } from './signup';
 
@@ -14,7 +14,7 @@ import { SignupPage } from './signup';
     TranslateModule.forChild()
   ],
   providers:[
-    CheckCode
+    MsgPrd
   ],
   exports: [
     SignupPage

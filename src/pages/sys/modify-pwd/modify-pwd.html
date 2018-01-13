@@ -27,6 +27,7 @@
 
   <ion-item>
     <ion-label fixed>{{ 'PASSWORD' | translate }}</ion-label>
+    <input type="hidden" formControlName="id" [(ngModel)]="id"/>
     <ion-input type="password" formControlName="password" ></ion-input>
   </ion-item>
   <ion-item class="error-message" *ngIf="myForm.controls.password.hasError('required') && myForm.controls.password.touched">

@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { IonicPage, NavController, ToastController,ViewController } from 'ionic-angular';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { User,SysUtil,IonicUtil,CheckCode } from '../../../providers/providers';
+import { UserPrd,SysUtil,IonicUtil,MsgPrd } from '../../../providers/providers';
 import { AppConfig } from '../../../app/app.config';
 
 @IonicPage()
@@ -24,11 +24,11 @@ export class SignupPage {
 
   constructor(public navCtrl: NavController,
     public viewCtrl: ViewController,
-    public user: User,
+    public user: UserPrd,
     public toastCtrl: ToastController,
     public sysUtil:SysUtil,
     public ionicUtil:IonicUtil,
-    public checkCode:CheckCode,
+    public checkCode:MsgPrd,
     public translateService: TranslateService, 
     public formBuilder: FormBuilder) {
 
@@ -68,15 +68,20 @@ export class SignupPage {
   }
 
   sendCheckcode(){
-    this.checkCode.sendCheckCode(this.signForm.controls.mobile.value).then(resp=>{
+    this.user.check(this.signForm.controls.mobile.value).then(resp=>{
       if(resp.success){
-        this.isEnabled = false;
-        setTimeout(() => {  
-          this.mdLabel();  
-        }, 1000); 
+        this.checkCode.sendCheckCode(this.signForm.controls.mobile.value).then(resp=>{
+          if(resp.success){
+            this.isEnabled = false;
+            setTimeout(() => {  
+              this.mdLabel();  
+            }, 1000); 
+          }
+        });
       }
     });
   }
+  
   mdLabel(){
     if(this.leafSecond > 0){
       setTimeout(() => {  

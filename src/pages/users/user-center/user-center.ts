@@ -3,8 +3,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
 import { IonicPage, NavController, NavParams,ViewController,ModalController,Events } from 'ionic-angular';
 
-import { Settings,SysUtil } from '../../../providers/providers';
-import { User } from '../../../providers/user/user';
+import { SettingsPrd,SysUtil,UserPrd } from '../../../providers/providers';
 import { UserInfo } from '../../../models/userInfo';
 
 /**
@@ -24,10 +23,10 @@ export class UserCenterPage {
   constructor(public navCtrl: NavController,
     public modalCtrl: ModalController,
     public viewCtrl:ViewController,
-    public settings: Settings,
     public formBuilder: FormBuilder,
     public navParams: NavParams,
     public translate: TranslateService,
+    private userPrd:UserPrd,
     private userInfo:UserInfo,
     private sysUtil:SysUtil,
     public events: Events) {
@@ -35,21 +34,20 @@ export class UserCenterPage {
   }
 
   ionViewDidLoad() {
-    this.sysUtil.checkLogin();
+    this.userPrd.checkLogin();
   }
 
 
   logOut() {
-    this.userInfo._isLogin = false;
-    //this.sysUtil.checkLogin();
+    this.userPrd.logout();
   }
 
   goLogin() {
-    this.sysUtil.checkLogin();
+    this.userPrd.checkLogin();
   }
 
   goPage(pageN){
-    if(this.sysUtil.checkLogin()){
+    if(this.userPrd.checkLogin()){
       this.navCtrl.push(pageN);
     }
   }
