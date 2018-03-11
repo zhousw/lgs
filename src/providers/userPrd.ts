@@ -63,6 +63,10 @@ export class UserPrd {
     return this.httpUtil.post('user/modifyPwd.do', accountInfo);
   }
 
+  modifyUserInfo(accountInfo:any){
+    return this.httpUtil.post('user/modifyUserInfo.do', accountInfo);
+  }
+
   check(mobile:any){
     return this.httpUtil.get('user/checkUser.do?mobile='+mobile);
   }
@@ -88,6 +92,8 @@ export class UserPrd {
     this.userInfo.mobile = '';
     this.userInfo.userName = '';
     this.userInfo.name = '';
+    this.userInfo.sex = '';
+    this.userInfo.sexName='';
     this.userInfo._isLogin = false;
   }
 

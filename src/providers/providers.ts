@@ -4,7 +4,8 @@ import { IonicUtil } from './utils/IonicUtil';
 import { Items } from './items';
 import { SettingsPrd } from './settingsPrd';
 import { MsgPrd } from './msgPrd';
-import { UserPrd } from './UserPrd';
+import { UserPrd } from './userPrd';
+import { DictDataPrd } from './dictDataPrd';
 
 export {
     HttpUtil,
@@ -12,6 +13,7 @@ export {
     IonicUtil,
     Items,
     SettingsPrd,
+    DictDataPrd,
     UserPrd,
     MsgPrd
 };

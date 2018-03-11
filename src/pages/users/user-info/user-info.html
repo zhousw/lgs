@@ -15,12 +15,29 @@
 
 <ion-content padding>
   <ion-list>
-    <button ion-item>
-      
-    </button>
-    <button ion-item (click)="goPage('ShippingAddrListPage')">
-    收货地址
-    </button>
+    <ion-item>      
+        <ion-label>头像</ion-label>
+        <ion-avatar item-right>
+          <img src="./assets/img/advance-card-tmntr.jpg">
+        </ion-avatar>
+    </ion-item>
+    <ion-item (click)="setName()">
+        <ion-label>姓名</ion-label>
+        <ion-note item-end >{{userInfo.name}}</ion-note>
+    </ion-item>
+    <ion-item (click)="setSex()">
+        <ion-label>性别</ion-label>
+        <ion-note item-end >{{userInfo.sexName}}</ion-note>
+    </ion-item>
+    <ion-item (click)="setEmail()">
+        <ion-label>邮箱地址</ion-label>
+        <ion-note item-end>{{userInfo.email}}</ion-note>
+    </ion-item>
+
+    <ion-item (click)="goPage('ShippingAddrListPage')">
+        <ion-label>收货地址</ion-label>
+        <ion-icon name="arrow-forward"></ion-icon>      
+      </ion-item>
 </ion-list>
 
 <div *ngIf="userInfo._isLogin" style="text-align: center; margin-left: 30px; margin-right: 30px;margin-top: 30px;">

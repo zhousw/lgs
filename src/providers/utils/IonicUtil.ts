@@ -1,4 +1,4 @@
-import { AlertController,ToastController,ModalController,LoadingController  } from 'ionic-angular';
+import { AlertController,ToastController,ActionSheetController,ModalController,LoadingController  } from 'ionic-angular';
 import { Injectable } from '@angular/core';
 import { SysUtil } from './SysUtil';
 
@@ -9,6 +9,7 @@ export class IonicUtil{
         private  alertCtrl    : AlertController,
         private  toastCtrl    : ToastController,
         private  modalCtrl    : ModalController,
+        public actionSheetCtrl:ActionSheetController,
         private  load      : LoadingController
     ){ }
 
@@ -39,6 +40,7 @@ export class IonicUtil{
     modal(template){
         this.modalCtrl.create(template).present();
     }
+
     showConfirm(title,msg,DisTxt,DisFn:Function,ATxt,AFn:Function) {    
         this.alertCtrl.create({
             title: title,
@@ -59,5 +61,36 @@ export class IonicUtil{
             ]
         }).present();
     }
+
+    showPrompt(title,msg,inputName,inputPholder,defaultVal,success?:Function,cancel?:Function){
+        this.alertCtrl.create({
+            title: title,
+            message: msg,
+            inputs: [
+              {
+                name: inputName,
+                value:defaultVal,
+                placeholder: inputPholder
+              },
+            ],
+            buttons: [
+              {
+                text: '取消',
+                handler: data => {
+                    if(cancel)
+                        cancel(data);
+                }
+              },
+              {
+                text: '确定',
+                handler: data => {
+                    if(success)
+                        success(data);
+                }
+              }
+            ]
+          }).present();
+    }
+    
     
 }

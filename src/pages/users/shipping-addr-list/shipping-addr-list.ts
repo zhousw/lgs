@@ -22,4 +22,7 @@ export class ShippingAddrListPage {
     console.log('ionViewDidLoad ShippingAddrListPage');
   }
 
+  add(){
+    this.navCtrl.push("ShippingAddrPage");
+  }
 }
